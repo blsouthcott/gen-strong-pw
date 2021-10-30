@@ -54,17 +54,18 @@ def run():
          sg.Radio("18", "radios", default=True)],
         [sg.Button("Generate")]
     ]
-        window = sg.Window("Strong Password Generator", layout)
-        while True:
-            event, values = window.read()
-            if event == sg.WIN_CLOSED or event == 'Cancel':
+
+    window = sg.Window("Strong Password Generator", layout)
+    while True:
+        event, values = window.read()
+        if event in [sg.WIN_CLOSED, 'Cancel']:
+            break
+        for val in values:
+            if values.get(val):
+                pw_len = val + 14
                 break
-            for val in values:
-                if values.get(val):
-                    pw_len = val + 14
-                    break
-            pw = gen_strong_password(pw_len)
-            sg.popup_get_text("Here's your password!", default_text=pw)
+        pw = gen_strong_password(pw_len)
+        sg.popup_get_text("Here's your password!", default_text=pw)
    
 
 if __name__ == "__main__":
