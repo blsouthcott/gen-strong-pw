@@ -1,46 +1,48 @@
 
+#!/usr/bin/env python3
+
 
 import string
 import random
+from typing import Union, List
 
 import PySimpleGUI as sg
 
 
-def gen_strong_password(length=18):
+def gen_rand_chars(num_chars: int, chars: Union[List, tuple]) -> str:
+    return "".join(str(random.choice(chars)) for _ in range(num_chars))
+
+
+def scramble(text: str) -> str:
+    scrambled_text = ""
+    for char in text:
+        rand_int = random.randint(0, len(text) - 1)
+        scrambled_text += text[rand_int]
+        left_half = text[:rand_int]
+        right_half = text[rand_int + 1:]
+        text = left_half + right_half
+    return scrambled_text
+
+
+def gen_strong_password(length: int=18) -> str:
     
     num_chars = length
-    #num_chars = random.randint(14, 18)
     char_count = num_chars
     
-    num_punctuation = random.randint(1,3)
-    punctuation = "".join([random.choice(
-        ("!", "$", "(", ")", "%", "&", "[", "]", ":", ";", "~", "?")
-                                        ) for _ in range(num_punctuation)])
-    char_count -= num_punctuation
+    punctuation = gen_rand_chars(random.randint(1, 3), 
+                    ("!", "$", "(", ")", "%", "&", "[", "]", ":", ";", "~", "?"))
+    char_count -= len(punctuation)
     
-    num_nums = random.randint(1,4)
-    ints = [i for i in range(10)]
-    nums = "".join([str(random.choice(ints)) for _ in range(num_nums)])
-    char_count -= num_nums
+    nums = gen_rand_chars(random.randint(1, 4), [i for i in range(10)])
+    char_count -= len(nums)
     
-    num_upper_letters = random.randint(3,5)
-    upper_letters = "".join([random.choice(string.ascii_uppercase) for _ in range(num_upper_letters)])
-    char_count -= num_upper_letters
+    upper_letters = gen_rand_chars(random.randint(3, 5), string.ascii_uppercase)
+    char_count -= len(upper_letters)
     
-    num_lower_letters = char_count
-    lower_letters = "".join([random.choice(string.ascii_lowercase) for _ in range(num_lower_letters)])
+    lower_letters = gen_rand_chars(char_count, string.ascii_lowercase)
     
     chars = punctuation + nums + upper_letters + lower_letters
-    strong_password = ""
-    
-    for char in range(num_chars):
-        rand_int = random.randint(0, len(chars) - 1)
-        strong_password += chars[rand_int]
-        left_half = chars[:rand_int]
-        right_half = chars[rand_int + 1:]
-        chars = left_half + right_half
-        
-    return strong_password
+    return scramble(chars)
             
 
 def run():
@@ -70,3 +72,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+    

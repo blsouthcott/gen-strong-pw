@@ -1,2 +1,1 @@
-assuming you have python3 and PySimpleGUI installed...
-run this and easily generate a strong password
+assuming you have python3 and PySimpleGUI installed, run this to easily generate strong passwords
