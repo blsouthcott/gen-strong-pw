@@ -49,11 +49,11 @@ def run():
     
     layout = [
         [sg.Text("Please choose a length for your password and then press 'Generate'.")],
-        [sg.Radio("14", "radios"), 
-         sg.Radio("15", "radios"), 
-         sg.Radio("16", "radios"), 
-         sg.Radio("17", "radios"), 
-         sg.Radio("18", "radios", default=True)],
+        [sg.Radio("16", "radios"), 
+         sg.Radio("20", "radios"), 
+         sg.Radio("24", "radios"), 
+         sg.Radio("30", "radios"), 
+         sg.Radio("40", "radios", default=True)],
         [sg.Button("Generate")]
     ]
 
