@@ -24,7 +24,7 @@ def scramble(text: str) -> str:
     return scrambled_text
 
 
-def gen_strong_password(length: int=18) -> str:
+def gen_strong_password(length: int=20) -> str:
     
     num_chars = length
     char_count = num_chars
