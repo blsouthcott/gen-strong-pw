@@ -1,7 +1,4 @@
 
-#!/usr/bin/env python3
-
-
 import string
 import random
 from typing import Union, List
@@ -15,7 +12,7 @@ def gen_rand_chars(num_chars: int, chars: Union[List, tuple]) -> str:
 
 def scramble(text: str) -> str:
     scrambled_text = ""
-    for char in text:
+    for _ in text:
         rand_int = random.randint(0, len(text) - 1)
         scrambled_text += text[rand_int]
         left_half = text[:rand_int]
@@ -24,7 +21,7 @@ def scramble(text: str) -> str:
     return scrambled_text
 
 
-def gen_strong_password(length: int=20) -> str:
+def gen_strong_password(length: int = 20) -> str:
     
     num_chars = length
     char_count = num_chars
@@ -43,17 +40,21 @@ def gen_strong_password(length: int=20) -> str:
     
     chars = punctuation + nums + upper_letters + lower_letters
     return scramble(chars)
-            
+
+
+def get_pw_len(val: int) -> int:
+    return {0: 16, 1: 20, 2: 24, 3: 30, 4: 40}.get(val)
+
 
 def run():
     
     layout = [
         [sg.Text("Please choose a length for your password and then press 'Generate'.")],
         [sg.Radio("16", "radios"), 
-         sg.Radio("20", "radios"), 
+         sg.Radio("20", "radios", default=True),
          sg.Radio("24", "radios"), 
          sg.Radio("30", "radios"), 
-         sg.Radio("40", "radios", default=True)],
+         sg.Radio("40", "radios")],
         [sg.Button("Generate")]
     ]
 
@@ -64,7 +65,7 @@ def run():
             break
         for val in values:
             if values.get(val):
-                pw_len = val + 14
+                pw_len = get_pw_len(val)
                 break
         pw = gen_strong_password(pw_len)
         sg.popup_get_text("Here's your password!", default_text=pw)
@@ -72,4 +73,3 @@ def run():
 
 if __name__ == "__main__":
     run()
-    
