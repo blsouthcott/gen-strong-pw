@@ -76,7 +76,7 @@ def run_popup_window(pw: str) -> None:
 
 
 def run_main_window() -> None:
-    """ runs the many window using PySimpleGUI """
+    """ runs the main window using PySimpleGUI """
 
     layout = [
         [sg.Text("Please choose a length for your password and then press 'Generate'.")],
