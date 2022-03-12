@@ -12,10 +12,12 @@ PUNCTUATION = ("!", "$", "(", ")", "%", "&", "[", "]", ":", ";", "~", "?")
 
 
 def gen_rand_chars(num_chars: int, chars: Union[List, tuple, str]) -> str:
+    """ randomly generates as many characters passed as num chars from the List/tuple/string passed as chars """
     return "".join(str(random.choice(chars)) for _ in range(num_chars))
 
 
 def scramble(text: str) -> str:
+    """ randomly assigns the characters passed to the function to new positions in the string """
     scrambled_text = ""
     for _ in text:
         rand_int = random.randint(0, len(text) - 1)
@@ -27,7 +29,12 @@ def scramble(text: str) -> str:
 
 
 def gen_strong_password(length: int) -> str:
-    
+    """ generates and returns a password with:
+            1-3 punctuation characters
+            1-4 numbers
+            3-5 uppercase letters
+            the remaining characters are lowercase letters
+    """
     num_chars = length
     char_count = num_chars
     
@@ -47,10 +54,12 @@ def gen_strong_password(length: int) -> str:
 
 
 def get_pw_len(val: int) -> int:
+    """ returns the length of the password based on the integer value of the radio button selected """
     return {0: 16, 1: 20, 2: 24, 3: 30, 4: 40}.get(val)
 
 
-def run_popup_window(pw):
+def run_popup_window(pw: str) -> None:
+    """ runs a popup window that allows the user to edit and/or copy their password to the clipboard """
 
     popup_layout = [
         [sg.InputText(pw)],
@@ -66,7 +75,8 @@ def run_popup_window(pw):
             sg.popup_timed("Your password is now copied to the clipboard")
 
 
-def run_main_window():
+def run_main_window() -> None:
+    """ runs the many window using PySimpleGUI """
 
     layout = [
         [sg.Text("Please choose a length for your password and then press 'Generate'.")],
@@ -91,8 +101,9 @@ def run_main_window():
         run_popup_window(pw)
 
 
-def main():
-    parser = argparse.ArgumentParser()
+def main() -> None:
+    """ main function generates a strong password either through the GUI or as a command line script """
+    parser = argparse.ArgumentParser("Generate a strong password using either the GUI or as a command line script.")
     parser.add_argument("--no-gui", dest="gui", action="store_false", default=True)
     parser.add_argument("--copy", dest="copy", action="store_true", default=False)
     parser.add_argument("pw_len", type=int, nargs="?", default=20)
