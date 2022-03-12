@@ -17,7 +17,7 @@ def gen_rand_chars(num_chars: int, chars: Union[List, tuple, str]) -> str:
 
 
 def scramble(text: str) -> str:
-    """ randomly assigns the characters passed to the function to new positions in the string """
+    """ randomly assigns the characters passed to the function to different positions within the string """
     scrambled_text = ""
     for _ in text:
         rand_int = random.randint(0, len(text) - 1)
