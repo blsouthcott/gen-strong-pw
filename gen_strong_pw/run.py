@@ -8,7 +8,7 @@ import PySimpleGUI as sg
 import pyperclip
 
 
-PUNCTUATION = ("!", "$", "(", ")", "%", "&", "[", "]", ":", ";", "~", "?")
+PUNCTUATION = ("!", "$", "(", ")", "&")
 
 
 def gen_rand_chars(num_chars: int, chars: Union[List, tuple, str]) -> str:
