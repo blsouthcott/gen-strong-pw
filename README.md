@@ -2,7 +2,7 @@
 Generate strong passwords either through the GUI or run as a command line script.
 
 ## How to use this
-`Git clone` or download the zip file and extract. Then `cd` into your local directory and run:
+`Git clone`  or download the zip file and extract. Then `cd` into your local directory and run:
 
 `pip install --user .`
 
