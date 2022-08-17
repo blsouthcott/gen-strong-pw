@@ -18,14 +18,12 @@ def gen_rand_chars(num_chars: int, chars: Union[List, tuple, str]) -> str:
 
 def scramble(text: str) -> str:
     """ randomly assigns the characters passed to the function to different positions within the string """
-    scrambled_text = ""
+    scrambled_text = []
     for _ in text:
         rand_int = random.randint(0, len(text) - 1)
-        scrambled_text += text[rand_int]
-        left_half = text[:rand_int]
-        right_half = text[rand_int + 1:]
-        text = left_half + right_half
-    return scrambled_text
+        scrambled_text.append(text[rand_int])
+        text = text[:rand_int] + text[rand_int + 1:]
+    return "".join(scrambled_text)
 
 
 def gen_strong_password(length: int) -> str:
