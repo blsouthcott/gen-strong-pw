@@ -1,4 +1,3 @@
-
 from gen_strong_pw.run import main
 
 

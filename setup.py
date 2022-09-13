@@ -14,8 +14,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
-    install_requires=['pyperclip==1.8.2',
-                      'PySimpleGUI==4.57.0'
-                      ]
+    python_requires=">=3.6",
+    install_requires=["pyperclip==1.8.2", "PySimpleGUI==4.57.0"],
 )
