@@ -18,8 +18,9 @@ def gen_rand_chars(num_chars: int, chars: Union[List, tuple, str]) -> str:
 def scramble(text: str) -> str:
     """randomly assigns the characters passed to the function to different positions within the string"""
     text = list(text)
+    pw_len = len(text)
     scrambled_text = []
-    for _ in text:
+    for _ in range(pw_len):
         rand_int = random.randint(0, len(text) - 1)
         scrambled_text.append(text[rand_int])
         if rand_int != len(text) - 1:
@@ -55,7 +56,7 @@ def gen_strong_password(length: int) -> str:
 
 def get_pw_len(val: int) -> int:
     """returns the length of the password based on the integer value of the radio button selected"""
-    return {0: 16, 1: 20, 2: 24, 3: 30, 4: 40}.get(val)
+    return { 0: 16, 1: 20, 2: 24, 3: 30, 4: 40}.get(val)
 
 
 def run_popup_window(pw: str) -> None:
